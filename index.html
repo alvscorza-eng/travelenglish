@@ -1598,13 +1598,17 @@
         const searchMeta = document.getElementById('searchMeta');
         const noResults = document.getElementById('noResults');
         let lastTouchTime = 0;
+        const touchStartData = new WeakMap();
+        const TAP_MOVE_THRESHOLD = 12;
         
         // Improved touch/click handler for cards
         cards.forEach(card => {
             // Use both touch and click for maximum compatibility
             card.addEventListener('click', handleCardClick);
             card.addEventListener('touchstart', handleCardTouchStart, { passive: true });
+            card.addEventListener('touchmove', handleCardTouchMove, { passive: true });
             card.addEventListener('touchend', handleCardTouchEnd, { passive: true });
+            card.addEventListener('touchcancel', handleCardTouchCancel, { passive: true });
         });
         
         // Handle card click
@@ -1629,12 +1633,43 @@
         
         // Handle touch start for visual feedback
         function handleCardTouchStart(event) {
+            const touch = event.changedTouches[0];
+            touchStartData.set(this, {
+                x: touch.clientX,
+                y: touch.clientY,
+                moved: false
+            });
+
             this.classList.add('touched');
+        }
+
+        // Handle touch move to detect scroll gestures
+        function handleCardTouchMove(event) {
+            const touchInfo = touchStartData.get(this);
+            const touch = event.changedTouches[0];
+
+            if (!touchInfo || !touch) {
+                return;
+            }
+
+            const movedX = Math.abs(touch.clientX - touchInfo.x);
+            const movedY = Math.abs(touch.clientY - touchInfo.y);
+            if (movedX > TAP_MOVE_THRESHOLD || movedY > TAP_MOVE_THRESHOLD) {
+                touchInfo.moved = true;
+                this.classList.remove('touched');
+            }
         }
         
         // Handle touch end
         function handleCardTouchEnd(event) {
-            // Prevent default to avoid double-tap zoom on iOS
+            const touchInfo = touchStartData.get(this);
+            touchStartData.delete(this);
+
+            if (!touchInfo || touchInfo.moved) {
+                this.classList.remove('touched');
+                return;
+            }
+
             event.preventDefault();
             lastTouchTime = Date.now();
             
@@ -1644,6 +1679,11 @@
             }
             
             // Remove touched class
+            this.classList.remove('touched');
+        }
+
+        function handleCardTouchCancel() {
+            touchStartData.delete(this);
             this.classList.remove('touched');
         }
         
