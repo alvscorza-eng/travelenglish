@@ -1,0 +1,62 @@
+{
+  "name": "travel-english-app",
+  "version": "1.0.0",
+  "description": "Progressive Web App with essential English phrases for travelers with phonetic pronunciation",
+  "main": "index.html",
+  "author": "Travel English",
+  "license": "MIT",
+  "keywords": [
+    "travel",
+    "english",
+    "learning",
+    "pwa",
+    "offline",
+    "phrases",
+    "pronunciation",
+    "tourism"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/travel-english-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/user/travel-english-app/issues"
+  },
+  "homepage": "https://github.com/user/travel-english-app#readme",
+  "scripts": {
+    "serve": "http-server -p 8000 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "files": [
+    "index.html",
+    "manifest.json",
+    "sw.js",
+    "icons/",
+    "README.md"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "categories": [
+    "education",
+    "travel",
+    "language-learning"
+  ],
+  "manifest": {
+    "name": "Travel English - Guia de Viagem",
+    "short_name": "Travel English",
+    "description": "Guia de frases em inglês para viagens internacionais com pronúncia fonética",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "theme_color": "#2563eb",
+    "background_color": "#ffffff"
+  }
+}

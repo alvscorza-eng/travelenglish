@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel English - Guia de Bolso</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Travel English">
+    
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
+    
+    <meta name="description" content="Guia de frases em inglês para viagens internacionais com pronúncia fonética">
+    <meta name="keywords" content="inglês, viagem, frases, turismo, pronúncia">
+    <meta name="author" content="Travel English">
+    <style>
+        :root {
+            --primary: #2563eb;    /* Azul Forte */
+            --secondary: #1e40af;  /* Azul Escuro */
+            --accent: #f97316;     /* Laranja para Fonética */
+            --accent2: #10b981;    /* Verde para novas categorias */
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.5; 
+            padding-bottom: env(safe-area-inset-bottom, 20px); /* Safe area for modern phones */
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            padding-top: max(30px, env(safe-area-inset-top, 30px)); /* Safe area for notch phones */
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 { 
+            margin-bottom: 8px; 
+            font-size: 1.8rem; 
+            letter-spacing: -0.5px; 
+            font-weight: 700;
+        }
+        header p { 
+            font-size: 0.95rem; 
+            opacity: 0.9; 
+            font-weight: 400;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: -20px auto 0;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-wrap {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+
+        .search-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 1rem;
+            color: var(--text);
+            background: #fff;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .search-meta {
+            margin-top: 8px;
+            font-size: 0.82rem;
+            color: #6b7280;
+        }
+
+        .empty-state {
+            display: none;
+            margin: 4px 0 18px;
+            padding: 14px;
+            border-radius: 12px;
+            background: #eef2ff;
+            color: #374151;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .empty-state.visible {
+            display: block;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        /* CARD BUTTON STYLING (FIXED FOR MOBILE) */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            outline: none;
+            position: relative;
+            touch-action: manipulation; /* Improve touch responsiveness */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .card:active, 
+        .card.touched { 
+            transform: scale(0.96); 
+            background: #f0f9ff; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card:focus-visible,
+        .close-btn:focus-visible,
+        .install-button:focus-visible,
+        .search-input:focus-visible,
+        .audio-btn:focus-visible {
+            outline: 3px solid rgba(37, 99, 235, 0.35);
+            outline-offset: 2px;
+        }
+
+        .card-icon { 
+            font-size: 2rem; 
+            margin-right: 15px; 
+            background: #eff6ff;
+            width: 55px; 
+            height: 55px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .card-new .card-icon { 
+            background: #d1fae5; 
+        }
+        
+        .card-text h3 { 
+            font-size: 1.15rem; 
+            color: var(--secondary); 
+            margin-bottom: 4px; 
+            font-weight: 700; 
+            line-height: 1.3;
+        }
+        .card-text p { 
+            font-size: 0.85rem; 
+            color: #666; 
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* MODAL STYLING */
+        .modal-overlay {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            display: none; 
+            justify-content: center; 
+            align-items: flex-end;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding-top: env(safe-area-inset-top, 0); /* Safe area */
+            padding-bottom: env(safe-area-inset-bottom, 0); /* Safe area */
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 600px;
+            height: 85vh;
+            max-height: 85vh;
+            border-radius: 24px 24px 0 0;
+            display: flex; 
+            flex-direction: column;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            background: #fff;
+            border-radius: 24px 24px 0 0;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .modal-header h2 { 
+            font-size: 1.35rem; 
+            color: var(--secondary); 
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: #f3f4f6; 
+            border: none; 
+            color: #333; 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            font-size: 1.5rem; 
+            cursor: pointer;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .close-btn:active {
+            background: #e5e7eb;
+        }
+
+        .modal-body { 
+            padding: 20px; 
+            overflow-y: auto; 
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            flex-grow: 1;
+        }
+
+        /* PHRASE ITEMS */
+        .phrase-group { 
+            margin-bottom: 28px; 
+        }
+        .phrase-group h4 { 
+            color: var(--primary); 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            margin-bottom: 12px; 
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .phrase-item {
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+        
+        .en { 
+            font-weight: 700; 
+            font-size: 1.15rem; 
+            color: var(--text); 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 4px; 
+            line-height: 1.4; 
+            gap: 8px;
+        }
+        .phone { 
+            display: block; 
+            color: var(--accent); 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            margin-bottom: 4px; 
+            font-family: 'SF Mono', 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        .pt { 
+            font-size: 0.92rem; 
+            color: #6b7280; 
+            line-height: 1.5;
+        }
+
+        .new-badge {
+            background: var(--accent2);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 15px 0;
+            }
+
+            .search-wrap {
+                margin-top: 10px;
+            }
+            
+            .card {
+                padding: 18px;
+            }
+            
+            .card-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .modal-content {
+                height: 90vh;
+                max-height: 90vh;
+                border-radius: 20px 20px 0 0;
+            }
+            
+            .modal-header {
+                padding: 18px;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.25rem;
+            }
+            
+            .modal-body {
+                padding: 18px;
+            }
+            
+            header {
+                padding: 25px 15px;
+                padding-top: max(25px, env(safe-area-inset-top, 25px));
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* iPhone notch and pill adjustments */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(15px, env(safe-area-inset-left, 15px));
+                padding-right: max(15px, env(safe-area-inset-right, 15px));
+            }
+        }
+        
+        /* PWA Install Button */
+        .install-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            cursor: pointer;
+            display: none;
+            z-index: 99;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
+            50% { box-shadow: 0 4px 20px rgba(37, 99, 235, 0.6); }
+            100% { box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
+        }
+        
+        .install-button:hover {
+            background: var(--secondary);
+        }
+        
+        .install-button.visible {
+            display: block;
+        }
+        
+        /* AUDIO BUTTON */
+        .audio-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+        }
+        
+        .audio-btn:hover {
+            background: #eff6ff;
+            transform: scale(1.1);
+        }
+        
+        .audio-btn:active {
+            background: #dbeafe;
+            transform: scale(0.95);
+        }
+        
+        .audio-btn.playing {
+            color: var(--accent);
+            animation: pulse-audio 1s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-audio {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        .audio-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>✈️ Travel English</h1>
+    <p>Toque nos cartões e use a busca para achar frases rápido</p>
+</header>
+
+<button id="installButton" class="install-button">
+    📲 Instalar App
+</button>
+
+<div class="container">
+    <div class="search-wrap">
+        <input id="searchInput" class="search-input" type="search" placeholder="Buscar categoria (ex: hotel, emergência, imigração)" autocomplete="off" inputmode="search" aria-label="Buscar categorias">
+        <div id="searchMeta" class="search-meta">Mostrando todas as categorias</div>
+    </div>
+
+    <div id="noResults" class="empty-state">Nenhuma categoria encontrada. Tente outra palavra.</div>
+
+    <div id="cardGrid" class="grid">
+        <button class="card" data-modal="modal-basics">
+            <span class="card-icon">👋</span>
+            <div class="card-text">
+                <h3>Básico</h3>
+                <p>Cumprimentos e educação</p>
+            </div>
+        </button>
+
+        <button class="card" data-modal="modal-airport">
+            <span class="card-icon">🛫</span>
+            <div class="card-text">
+                <h3>Aeroporto</h3>
+                <p>Check-in, voo e bagagem</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-immigration">
+            <span class="card-icon">🛂</span>
+            <div class="card-text">
+                <h3>Imigração <span class="new-badge">NOVO</span></h3>
+                <p>Entrada, alfândega e documentos</p>
+            </div>
+        </button>
+
+        <button class="card" data-modal="modal-transport">
+            <span class="card-icon">🚖</span>
+            <div class="card-text">
+                <h3>Transporte</h3>
+                <p>Táxi, Uber e direções</p>
+            </div>
+        </button>
+
+        <button class="card" data-modal="modal-hotel">
+            <span class="card-icon">🏨</span>
+            <div class="card-text">
+                <h3>Hotel</h3>
+                <p>Check-in e serviços</p>
+            </div>
+        </button>
+
+        <button class="card" data-modal="modal-food">
+            <span class="card-icon">🍔</span>
+            <div class="card-text">
+                <h3>Restaurante</h3>
+                <p>Cardápio e pedidos</p>
+            </div>
+        </button>
+
+        <button class="card" data-modal="modal-shop">
+            <span class="card-icon">🛍️</span>
+            <div class="card-text">
+                <h3>Compras</h3>
+                <p>Preços e pagamentos</p>
+            </div>
+        </button>
+
+        <button class="card" data-modal="modal-emergency">
+            <span class="card-icon">🚨</span>
+            <div class="card-text">
+                <h3>Emergência</h3>
+                <p>Socorro e ajuda</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-communication">
+            <span class="card-icon">📱</span>
+            <div class="card-text">
+                <h3>Comunicação <span class="new-badge">NOVO</span></h3>
+                <p>Wi-Fi, chip e internet</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-banking">
+            <span class="card-icon">🏦</span>
+            <div class="card-text">
+                <h3>Banco <span class="new-badge">NOVO</span></h3>
+                <p>Caixa e câmbio</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-sightseeing">
+            <span class="card-icon">🗺️</span>
+            <div class="card-text">
+                <h3>Turismo <span class="new-badge">NOVO</span></h3>
+                <p>Passeios e atrações</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-health">
+            <span class="card-icon">💊</span>
+            <div class="card-text">
+                <h3>Saúde <span class="new-badge">NOVO</span></h3>
+                <p>Farmácia e médico</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-social">
+            <span class="card-icon">👥</span>
+            <div class="card-text">
+                <h3>Social <span class="new-badge">NOVO</span></h3>
+                <p>Conversas e amizades</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-weather">
+            <span class="card-icon">⛅</span>
+            <div class="card-text">
+                <h3>Clima <span class="new-badge">NOVO</span></h3>
+                <p>Tempo e temperatura</p>
+            </div>
+        </button>
+
+        <button class="card card-new" data-modal="modal-luggage">
+            <span class="card-icon">🧳</span>
+            <div class="card-text">
+                <h3>Bagagem <span class="new-badge">NOVO</span></h3>
+                <p>Extravio, despacho e retirada</p>
+            </div>
+        </button>
+    </div>
+</div>
+
+<div id="modal-basics" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>👋 Básico</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Cumprimentos</h4>
+                <div class="phrase-item">
+                    <span class="en">Good morning!</span>
+                    <span class="phone">Gud mór-ning</span>
+                    <span class="pt">Bom dia.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">How are you?</span>
+                    <span class="phone">Rau ár iú?</span>
+                    <span class="pt">Como vai?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Nice to meet you!</span>
+                    <span class="phone">Nais tchu mît iú</span>
+                    <span class="pt">Prazer em conhecê-lo.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What's your name?</span>
+                    <span class="phone">Uáts ior neim?</span>
+                    <span class="pt">Qual é seu nome?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where are you from?</span>
+                    <span class="phone">Uér ár iú from?</span>
+                    <span class="pt">De onde você é?</span>
+                </div>
+            </div>
+            <div class="phrase-group">
+                <h4>Educação</h4>
+                <div class="phrase-item">
+                    <span class="en">Thank you very much.</span>
+                    <span class="phone">Tenk iú véri mâtch</span>
+                    <span class="pt">Muito obrigado.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Excuse me.</span>
+                    <span class="phone">Eks-kiúz mi</span>
+                    <span class="pt">Com licença.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I don't understand.</span>
+                    <span class="phone">Ai dônt ân-der-sténd</span>
+                    <span class="pt">Não entendo.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Could you repeat that?</span>
+                    <span class="phone">Cûd iú ri-pît dét?</span>
+                    <span class="pt">Poderia repetir?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Sorry, I didn't catch that.</span>
+                    <span class="phone">Só-ri, ai díd-ent ketch dét</span>
+                    <span class="pt">Desculpe, não entendi.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Could you speak more slowly?</span>
+                    <span class="phone">Cûd iú spîk mór slôu-li?</span>
+                    <span class="pt">Pode falar mais devagar?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can you write it down?</span>
+                    <span class="phone">Ken iú rait it daun?</span>
+                    <span class="pt">Pode escrever isso?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-airport" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🛫 Aeroporto</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Check-in</h4>
+                <div class="phrase-item">
+                    <span class="en">Here is my passport.</span>
+                    <span class="phone">Rîr iz mai pés-pórt</span>
+                    <span class="pt">Aqui está meu passaporte.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Window seat, please.</span>
+                    <span class="phone">Uin-dou sît, plîz</span>
+                    <span class="pt">Assento na janela, por favor.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is there a weight limit?</span>
+                    <span class="phone">Iz dér a ueit lí-mit?</span>
+                    <span class="pt">Tem limite de peso?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where is my gate?</span>
+                    <span class="phone">Uér iz mai geit?</span>
+                    <span class="pt">Onde é meu portão?</span>
+                </div>
+            </div>
+            <div class="phrase-group">
+                <h4>No Avião</h4>
+                <div class="phrase-item">
+                    <span class="en">Water, please.</span>
+                    <span class="phone">Uó-rer, plîz</span>
+                    <span class="pt">Água, por favor.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where is my seat?</span>
+                    <span class="phone">Uér iz mai sît?</span>
+                    <span class="pt">Onde é meu assento?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can I have a blanket?</span>
+                    <span class="phone">Ken ai rév a blen-ket?</span>
+                    <span class="pt">Posso ter um cobertor?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I feel sick.</span>
+                    <span class="phone">Ai fîl sik</span>
+                    <span class="pt">Estou enjoado.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-transport" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🚖 Transporte</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Táxi / Uber</h4>
+                <div class="phrase-item">
+                    <span class="en">To the hotel, please.</span>
+                    <span class="phone">Tchu dâ rou-tél, plîz</span>
+                    <span class="pt">Para o hotel, por favor.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">How much is it?</span>
+                    <span class="phone">Rau mâtch iz it?</span>
+                    <span class="pt">Quanto custa?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Stop here, please.</span>
+                    <span class="phone">Stop rîr, plîz</span>
+                    <span class="pt">Pare aqui, por favor.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Keep the change.</span>
+                    <span class="phone">Kîp dâ tchein-dj</span>
+                    <span class="pt">Fique com o troco.</span>
+                </div>
+            </div>
+            <div class="phrase-group">
+                <h4>Direções</h4>
+                <div class="phrase-item">
+                    <span class="en">Where is the subway?</span>
+                    <span class="phone">Uér iz dâ sâb-uei?</span>
+                    <span class="pt">Onde é o metrô?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Turn right.</span>
+                    <span class="phone">Târn rait</span>
+                    <span class="pt">Vire à direita.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Go straight ahead.</span>
+                    <span class="phone">Gou streit a-réd</span>
+                    <span class="pt">Siga em frente.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is it far from here?</span>
+                    <span class="phone">Iz it fár fróm rîr?</span>
+                    <span class="pt">É longe daqui?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-immigration" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🛂 Imigração</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Controle de Passaporte</h4>
+                <div class="phrase-item">
+                    <span class="en">Here is my arrival form.</span>
+                    <span class="phone">Rîr iz mai a-rái-vol fórm</span>
+                    <span class="pt">Aqui está meu formulário de chegada.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I'm here for tourism.</span>
+                    <span class="phone">Aim rîr for tú-rizm</span>
+                    <span class="pt">Estou aqui a turismo.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I'll stay for seven days.</span>
+                    <span class="phone">Ail stei for sé-ven deiz</span>
+                    <span class="pt">Vou ficar por sete dias.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">This is my hotel booking.</span>
+                    <span class="phone">Dis iz mai rou-tél bú-king</span>
+                    <span class="pt">Esta é minha reserva de hotel.</span>
+                </div>
+            </div>
+            <div class="phrase-group">
+                <h4>Alfândega</h4>
+                <div class="phrase-item">
+                    <span class="en">I have nothing to declare.</span>
+                    <span class="phone">Ai rév nâ-thing tchu di-klér</span>
+                    <span class="pt">Não tenho nada a declarar.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where is customs?</span>
+                    <span class="phone">Uér iz câs-toms?</span>
+                    <span class="pt">Onde fica a alfândega?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can I bring this item?</span>
+                    <span class="phone">Ken ai bring dis ai-tem?</span>
+                    <span class="pt">Posso trazer este item?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">It's for personal use.</span>
+                    <span class="phone">Its for pêr-so-nal iúz</span>
+                    <span class="pt">É para uso pessoal.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-hotel" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🏨 Hotel</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Recepção</h4>
+                <div class="phrase-item">
+                    <span class="en">I have a reservation.</span>
+                    <span class="phone">Ai rév a re-zer-vei-chan</span>
+                    <span class="pt">Tenho uma reserva.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What time is breakfast?</span>
+                    <span class="phone">Uát taim iz brék-fest?</span>
+                    <span class="pt">Que horas é o café?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">The Wi-Fi password?</span>
+                    <span class="phone">Dâ uai-fai pés-uórd?</span>
+                    <span class="pt">A senha do Wi-Fi?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Extra towels, please.</span>
+                    <span class="phone">Eks-tra tau-els, plîz</span>
+                    <span class="pt">Toalhas extras, por favor.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-food" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🍔 Restaurante</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Pedidos</h4>
+                <div class="phrase-item">
+                    <span class="en">Table for two.</span>
+                    <span class="phone">Tei-bol fór tchu</span>
+                    <span class="pt">Mesa para dois.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Menu, please.</span>
+                    <span class="phone">Mé-niu, plîz</span>
+                    <span class="pt">Cardápio, por favor.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Check, please!</span>
+                    <span class="phone">Tchék, plîz!</span>
+                    <span class="pt">A conta, por favor!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I'm vegetarian.</span>
+                    <span class="phone">Aim ve-dje-té-ri-an</span>
+                    <span class="pt">Sou vegetariano.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-shop" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🛍️ Compras</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Na Loja</h4>
+                <div class="phrase-item">
+                    <span class="en">How much is this?</span>
+                    <span class="phone">Rau mâtch iz dis?</span>
+                    <span class="pt">Quanto custa isto?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can I try it on?</span>
+                    <span class="phone">Ken ai trai it on?</span>
+                    <span class="pt">Posso provar?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Credit card?</span>
+                    <span class="phone">Cré-dit cárd?</span>
+                    <span class="pt">Cartão de crédito?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Do you have a bigger size?</span>
+                    <span class="phone">Du iú rév a bí-ger saiz?</span>
+                    <span class="pt">Tem um tamanho maior?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-emergency" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🚨 Emergência</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Socorro</h4>
+                <div class="phrase-item">
+                    <span class="en">Help me!</span>
+                    <span class="phone">Relp mi!</span>
+                    <span class="pt">Me ajude!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Call the police.</span>
+                    <span class="phone">Cól dâ po-lîs</span>
+                    <span class="pt">Chame a polícia.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where is the hospital?</span>
+                    <span class="phone">Uér iz dâ rós-pi-tal?</span>
+                    <span class="pt">Onde é o hospital?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I lost my passport.</span>
+                    <span class="phone">Ai lóst mai pés-pórt</span>
+                    <span class="pt">Perdi meu passaporte.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need help at the embassy.</span>
+                    <span class="phone">Ai nîd relp et dâ ém-ba-si</span>
+                    <span class="pt">Preciso de ajuda na embaixada.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Someone stole my bag.</span>
+                    <span class="phone">Sâm-uân stoul mai bég</span>
+                    <span class="pt">Alguém roubou minha bolsa.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-communication" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>📱 Comunicação</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Telefone e Internet</h4>
+                <div class="phrase-item">
+                    <span class="en">Do you have Wi-Fi?</span>
+                    <span class="phone">Du iú rév uai-fai?</span>
+                    <span class="pt">Você tem Wi-Fi?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What's the password?</span>
+                    <span class="phone">Uáts dâ pés-uórd?</span>
+                    <span class="pt">Qual é a senha?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can I use your phone?</span>
+                    <span class="phone">Ken ai iúz ior foun?</span>
+                    <span class="pt">Posso usar seu telefone?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need to charge my phone.</span>
+                    <span class="phone">Ai nîd tchu tchár-dj mai foun</span>
+                    <span class="pt">Preciso carregar meu celular.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where can I buy a SIM card?</span>
+                    <span class="phone">Uér ken ai bai a sim cárd?</span>
+                    <span class="pt">Onde posso comprar um chip?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need internet access.</span>
+                    <span class="phone">Ai nîd în-ter-net ák-ses</span>
+                    <span class="pt">Preciso de acesso à internet.</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Chamadas e Mensagens</h4>
+                <div class="phrase-item">
+                    <span class="en">Can I make a call?</span>
+                    <span class="phone">Ken ai meik a cól?</span>
+                    <span class="pt">Posso fazer uma ligação?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I'd like to send a text.</span>
+                    <span class="phone">Aid laik tchu send a tekst</span>
+                    <span class="pt">Gostaria de enviar uma mensagem.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What's your phone number?</span>
+                    <span class="phone">Uáts ior foun nâm-ber?</span>
+                    <span class="pt">Qual é seu número de telefone?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">The signal is weak here.</span>
+                    <span class="phone">Dâ sig-nal iz uîk rîr</span>
+                    <span class="pt">O sinal está fraco aqui.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-banking" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🏦 Banco & Câmbio</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Caixa Eletrônico e Dinheiro</h4>
+                <div class="phrase-item">
+                    <span class="en">Where is the nearest ATM?</span>
+                    <span class="phone">Uér iz dâ nî-rest ei-ti-em?</span>
+                    <span class="pt">Onde fica o caixa eletrônico mais próximo?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need to withdraw money.</span>
+                    <span class="phone">Ai nîd tchu uid-dró mâ-ni</span>
+                    <span class="pt">Preciso sacar dinheiro.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">The ATM isn't working.</span>
+                    <span class="phone">Dâ ei-ti-em íz-ent uêr-king</span>
+                    <span class="pt">O caixa eletrônico não está funcionando.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can I use my credit card?</span>
+                    <span class="phone">Ken ai iúz mai cré-dit cárd?</span>
+                    <span class="pt">Posso usar meu cartão de crédito?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need change.</span>
+                    <span class="phone">Ai nîd tchein-dj</span>
+                    <span class="pt">Preciso de troco.</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Câmbio de Moeda</h4>
+                <div class="phrase-item">
+                    <span class="en">Where can I exchange money?</span>
+                    <span class="phone">Uér ken ai eks-tchein-dj mâ-ni?</span>
+                    <span class="pt">Onde posso trocar dinheiro?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What's the exchange rate?</span>
+                    <span class="phone">Uáts dâ eks-tchein-dj reit?</span>
+                    <span class="pt">Qual é a taxa de câmbio?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I'd like to exchange dollars.</span>
+                    <span class="phone">Aid laik tchu eks-tchein-dj dô-lars</span>
+                    <span class="pt">Gostaria de trocar dólares.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is there a commission fee?</span>
+                    <span class="phone">Iz dér a ko-mi-shan fî?</span>
+                    <span class="pt">Tem taxa de comissão?</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Problemas com Cartões</h4>
+                <div class="phrase-item">
+                    <span class="en">My card was blocked.</span>
+                    <span class="phone">Mai cárd uóz blókt</span>
+                    <span class="pt">Meu cartão foi bloqueado.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">The machine ate my card.</span>
+                    <span class="phone">Dâ ma-shîn eit mai cárd</span>
+                    <span class="pt">A máquina engoliu meu cartão.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I lost my wallet.</span>
+                    <span class="phone">Ai lóst mai uó-let</span>
+                    <span class="pt">Perdi minha carteira.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-sightseeing" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🗺️ Turismo</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Informações Turísticas</h4>
+                <div class="phrase-item">
+                    <span class="en">Where is the tourist office?</span>
+                    <span class="phone">Uér iz dâ tú-rist ô-fis?</span>
+                    <span class="pt">Onde fica o escritório de turismo?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Do you have a map?</span>
+                    <span class="phone">Du iú rév a mep?</span>
+                    <span class="pt">Você tem um mapa?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What are the main attractions?</span>
+                    <span class="phone">Uát ár dâ mein a-trék-shons?</span>
+                    <span class="pt">Quais são as principais atrações?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is there a guided tour?</span>
+                    <span class="phone">Iz dér a gai-ded tur?</span>
+                    <span class="pt">Tem tour guiado?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">How much is the entrance fee?</span>
+                    <span class="phone">Rau mâtch iz dî én-trans fî?</span>
+                    <span class="pt">Quanto custa a entrada?</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Fotografia e Experiências</h4>
+                <div class="phrase-item">
+                    <span class="en">Can you take a photo of us?</span>
+                    <span class="phone">Ken iú teik a fou-tou of âs?</span>
+                    <span class="pt">Pode tirar uma foto nossa?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is photography allowed?</span>
+                    <span class="phone">Iz fo-tó-gra-fi a-laud?</span>
+                    <span class="pt">Fotografia é permitida?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What time does it close?</span>
+                    <span class="phone">Uát taim dâz it clous?</span>
+                    <span class="pt">Que horas fecha?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">This view is beautiful!</span>
+                    <span class="phone">Dis viú iz biu-ti-ful!</span>
+                    <span class="pt">Esta vista é linda!</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Transporte para Turismo</h4>
+                <div class="phrase-item">
+                    <span class="en">Where does the tour bus leave from?</span>
+                    <span class="phone">Uér dâz dâ tur bâs lîv from?</span>
+                    <span class="pt">De onde sai o ônibus de turismo?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is this the right bus for the museum?</span>
+                    <span class="phone">Iz dis dâ rait bâs for dâ miu-zí-em?</span>
+                    <span class="pt">Este é o ônibus certo para o museu?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">How long is the tour?</span>
+                    <span class="phone">Rau long iz dâ tur?</span>
+                    <span class="pt">Quanto tempo dura o tour?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-health" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>💊 Saúde</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Farmácia</h4>
+                <div class="phrase-item">
+                    <span class="en">Where is the nearest pharmacy?</span>
+                    <span class="phone">Uér iz dâ nî-rest fár-ma-si?</span>
+                    <span class="pt">Onde fica a farmácia mais próxima?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need medicine for a headache.</span>
+                    <span class="phone">Ai nîd mé-di-sin for a réd-eik</span>
+                    <span class="pt">Preciso de remédio para dor de cabeça.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Do you have something for allergies?</span>
+                    <span class="phone">Du iú rév sâm-thing for á-ler-djis?</span>
+                    <span class="pt">Tem algo para alergias?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need band-aids.</span>
+                    <span class="phone">Ai nîd bend-eids</span>
+                    <span class="pt">Preciso de band-aids.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is this over-the-counter?</span>
+                    <span class="phone">Iz dis ou-ver-dâ-kaun-ter?</span>
+                    <span class="pt">Isso é venda livre?</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Médico e Sintomas</h4>
+                <div class="phrase-item">
+                    <span class="en">I need to see a doctor.</span>
+                    <span class="phone">Ai nîd tchu sí a dôk-tor</span>
+                    <span class="pt">Preciso ver um médico.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I have a fever.</span>
+                    <span class="phone">Ai rév a fî-ver</span>
+                    <span class="pt">Estou com febre.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">My stomach hurts.</span>
+                    <span class="phone">Mai stâ-mak hêrts</span>
+                    <span class="pt">Minha barriga dói.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I feel dizzy.</span>
+                    <span class="phone">Ai fîl dí-zi</span>
+                    <span class="pt">Estou tonto.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I'm allergic to penicillin.</span>
+                    <span class="phone">Ai em a-lér-djik tchu pe-ni-sí-lin</span>
+                    <span class="pt">Sou alérgico a penicilina.</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Emergência Médica</h4>
+                <div class="phrase-item">
+                    <span class="en">It's an emergency!</span>
+                    <span class="phone">Its an i-mér-djen-si!</span>
+                    <span class="pt">É uma emergência!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Call an ambulance!</span>
+                    <span class="phone">Cól en ám-biu-lans!</span>
+                    <span class="pt">Chame uma ambulância!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I have travel insurance.</span>
+                    <span class="phone">Ai rév tre-vél in-shu-rans</span>
+                    <span class="pt">Tenho seguro viagem.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-social" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>👥 Social</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Conversas Informais</h4>
+                <div class="phrase-item">
+                    <span class="en">What's your name?</span>
+                    <span class="phone">Uáts ior neim?</span>
+                    <span class="pt">Qual é seu nome?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where are you from?</span>
+                    <span class="phone">Uér ár iú from?</span>
+                    <span class="pt">De onde você é?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">How long are you staying?</span>
+                    <span class="phone">Rau long ár iú stei-ing?</span>
+                    <span class="pt">Quanto tempo você fica?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Do you like it here?</span>
+                    <span class="phone">Du iú laik it rîr?</span>
+                    <span class="pt">Você gosta daqui?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What do you recommend?</span>
+                    <span class="phone">Uát du iú re-ko-ménd?</span>
+                    <span class="pt">O que você recomenda?</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Convites e Saídas</h4>
+                <div class="phrase-item">
+                    <span class="en">Would you like to have a drink?</span>
+                    <span class="phone">Uûd iú laik tchu rév a drink?</span>
+                    <span class="pt">Você gostaria de tomar um drink?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Let's go out tonight!</span>
+                    <span class="phone">Lets gou aut to-nait!</span>
+                    <span class="pt">Vamos sair hoje à noite!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Do you want to join us?</span>
+                    <span class="phone">Du iú uânt tchu djoin âs?</span>
+                    <span class="pt">Você quer se juntar a nós?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Where should we meet?</span>
+                    <span class="phone">Uér shud ui mît?</span>
+                    <span class="pt">Onde devemos nos encontrar?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What time?</span>
+                    <span class="phone">Uát taim?</span>
+                    <span class="pt">Que horas?</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Expressões Sociais</h4>
+                <div class="phrase-item">
+                    <span class="en">Nice to meet you!</span>
+                    <span class="phone">Nais tchu mît iú!</span>
+                    <span class="pt">Prazer em conhecê-lo!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Have a nice day!</span>
+                    <span class="phone">Rev a nais dei!</span>
+                    <span class="pt">Tenha um bom dia!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">See you later!</span>
+                    <span class="phone">Sî iú lei-ter!</span>
+                    <span class="pt">Até mais tarde!</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Let's keep in touch.</span>
+                    <span class="phone">Lets kîp in tâ-tch</span>
+                    <span class="pt">Vamos manter contato.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-weather" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>⛅ Clima</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Previsão do Tempo</h4>
+                <div class="phrase-item">
+                    <span class="en">What's the weather like?</span>
+                    <span class="phone">Uáts dâ ué-der laik?</span>
+                    <span class="pt">Como está o tempo?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is it going to rain?</span>
+                    <span class="phone">Iz it gou-ing tchu rein?</span>
+                    <span class="pt">Vai chover?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">What's the temperature?</span>
+                    <span class="phone">Uáts dâ tém-pe-ra-tchor?</span>
+                    <span class="pt">Qual é a temperatura?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Will it be sunny tomorrow?</span>
+                    <span class="phone">Uil it bi sâ-ni to-mô-rou?</span>
+                    <span class="pt">Vai fazer sol amanhã?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is it cold outside?</span>
+                    <span class="phone">Iz it kould aut-said?</span>
+                    <span class="pt">Está frio lá fora?</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Condições Climáticas</h4>
+                <div class="phrase-item">
+                    <span class="en">It's raining.</span>
+                    <span class="phone">Its rei-ning</span>
+                    <span class="pt">Está chovendo.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">It's sunny.</span>
+                    <span class="phone">Its sâ-ni</span>
+                    <span class="pt">Está ensolarado.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">It's cloudy.</span>
+                    <span class="phone">Its klaud-i</span>
+                    <span class="pt">Está nublado.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">It's windy.</span>
+                    <span class="phone">Its uin-di</span>
+                    <span class="pt">Está ventando.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">It's hot.</span>
+                    <span class="phone">Its hot</span>
+                    <span class="pt">Está quente.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">It's freezing!</span>
+                    <span class="phone">Its frî-zing!</span>
+                    <span class="pt">Está congelando!</span>
+                </div>
+            </div>
+            
+            <div class="phrase-group">
+                <h4>Preparação para o Clima</h4>
+                <div class="phrase-item">
+                    <span class="en">Do I need an umbrella?</span>
+                    <span class="phone">Du ai nîd en âm-bré-la?</span>
+                    <span class="pt">Preciso de guarda-chuva?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Should I wear a jacket?</span>
+                    <span class="phone">Shud ai uér a djé-ket?</span>
+                    <span class="pt">Devo usar uma jaqueta?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is it going to be warm?</span>
+                    <span class="phone">Iz it gou-ing tchu bi uórm?</span>
+                    <span class="pt">Vai estar quente?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">The weather is perfect!</span>
+                    <span class="phone">Dâ ué-der iz pêr-fekt!</span>
+                    <span class="pt">O tempo está perfeito!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-luggage" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🧳 Bagagem</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="phrase-group">
+                <h4>Despacho e Retirada</h4>
+                <div class="phrase-item">
+                    <span class="en">Where is baggage claim?</span>
+                    <span class="phone">Uér iz bé-guidj kleim?</span>
+                    <span class="pt">Onde fica a esteira de bagagens?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">My suitcase is fragile.</span>
+                    <span class="phone">Mai sút-keis iz frá-djil</span>
+                    <span class="pt">Minha mala é frágil.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Can I carry this on board?</span>
+                    <span class="phone">Ken ai ké-ri dis on bórd?</span>
+                    <span class="pt">Posso levar isso na cabine?</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">Is this bag overweight?</span>
+                    <span class="phone">Iz dis bég ou-ver-uêit?</span>
+                    <span class="pt">Essa bagagem está acima do peso?</span>
+                </div>
+            </div>
+            <div class="phrase-group">
+                <h4>Problemas com Bagagem</h4>
+                <div class="phrase-item">
+                    <span class="en">My luggage is missing.</span>
+                    <span class="phone">Mai lâ-guidj iz mí-sing</span>
+                    <span class="pt">Minha bagagem sumiu.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">I need to file a report.</span>
+                    <span class="phone">Ai nîd tchu fail a ri-pórt</span>
+                    <span class="pt">Preciso abrir um relatório.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">My bag arrived damaged.</span>
+                    <span class="phone">Mai bég a-ráivd dé-midjd</span>
+                    <span class="pt">Minha mala chegou danificada.</span>
+                </div>
+                <div class="phrase-item">
+                    <span class="en">When will it be delivered?</span>
+                    <span class="phone">Uen uil it bi di-lí-verd?</span>
+                    <span class="pt">Quando ela será entregue?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all card buttons
+        const cards = document.querySelectorAll('.card');
+        const modals = document.querySelectorAll('.modal-overlay');
+        const closeButtons = document.querySelectorAll('.close-btn');
+        const installButton = document.getElementById('installButton');
+        const searchInput = document.getElementById('searchInput');
+        const searchMeta = document.getElementById('searchMeta');
+        const noResults = document.getElementById('noResults');
+        let lastTouchTime = 0;
+        
+        // Improved touch/click handler for cards
+        cards.forEach(card => {
+            // Use both touch and click for maximum compatibility
+            card.addEventListener('click', handleCardClick);
+            card.addEventListener('touchstart', handleCardTouchStart, { passive: true });
+            card.addEventListener('touchend', handleCardTouchEnd, { passive: true });
+        });
+        
+        // Handle card click
+        function handleCardClick(event) {
+            if (Date.now() - lastTouchTime < 500) {
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const modalId = this.getAttribute('data-modal');
+            if (modalId) {
+                openModal(modalId);
+            }
+            
+            // Remove touched class after click
+            setTimeout(() => {
+                this.classList.remove('touched');
+            }, 200);
+        }
+        
+        // Handle touch start for visual feedback
+        function handleCardTouchStart(event) {
+            this.classList.add('touched');
+        }
+        
+        // Handle touch end
+        function handleCardTouchEnd(event) {
+            // Prevent default to avoid double-tap zoom on iOS
+            event.preventDefault();
+            lastTouchTime = Date.now();
+            
+            const modalId = this.getAttribute('data-modal');
+            if (modalId) {
+                openModal(modalId);
+            }
+            
+            // Remove touched class
+            this.classList.remove('touched');
+        }
+        
+        // Open modal function
+        function openModal(modalId, updateHash = true) {
+            // Close any open modals first
+            closeAllModals();
+            
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                // Add active class with a slight delay for smooth animation
+                setTimeout(() => {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }, 10);
+
+                if (updateHash && window.location.hash !== `#${modalId}`) {
+                    history.replaceState(null, '', `#${modalId}`);
+                }
+            }
+        }
+        
+        // Close modal function
+        function closeModal(modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            if (window.location.hash === `#${modal.id}`) {
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
+        }
+        
+        // Close all modals
+        function closeAllModals() {
+            modals.forEach(modal => {
+                closeModal(modal);
+            });
+        }
+        
+        // Close buttons event listeners
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal-overlay');
+                if (modal) {
+                    closeModal(modal);
+                }
+            });
+            
+            // Add touch support for close buttons
+            button.addEventListener('touchstart', function(event) {
+                event.stopPropagation();
+            });
+            
+            button.addEventListener('touchend', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                const modal = this.closest('.modal-overlay');
+                if (modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+        
+        // Close modal when clicking on overlay background
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    closeModal(this);
+                }
+            });
+            
+            // Add touch support for overlay
+            modal.addEventListener('touchstart', function(event) {
+                if (event.target === this) {
+                    event.preventDefault();
+                }
+            });
+            
+            modal.addEventListener('touchend', function(event) {
+                if (event.target === this) {
+                    event.preventDefault();
+                    closeModal(this);
+                }
+            });
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAllModals();
+            }
+        });
+        
+        // Prevent body scrolling when modal is open (for iOS)
+        modals.forEach(modal => {
+            modal.addEventListener('touchmove', function(event) {
+                if (modal.classList.contains('active') && event.target === modal) {
+                    event.preventDefault();
+                }
+            }, { passive: false });
+        });
+
+        // Search/filter categories
+        function normalizeText(text) {
+            return text
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+        }
+
+        function filterCards() {
+            const query = normalizeText(searchInput.value.trim());
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const searchable = normalizeText(card.textContent);
+                const matches = !query || searchable.includes(query);
+                card.style.display = matches ? '' : 'none';
+                if (matches) visibleCount += 1;
+            });
+
+            if (!query) {
+                searchMeta.textContent = 'Mostrando todas as categorias';
+            } else {
+                searchMeta.textContent = `${visibleCount} categoria(s) encontrada(s)`;
+            }
+
+            noResults.classList.toggle('visible', visibleCount === 0);
+        }
+
+        searchInput.addEventListener('input', filterCards);
+
+        // Open modal directly from hash (supports PWA shortcuts)
+        function syncModalWithHash() {
+            const hash = window.location.hash.replace('#', '');
+            if (!hash) {
+                closeAllModals();
+                return;
+            }
+
+            const targetModal = document.getElementById(hash);
+            if (targetModal && targetModal.classList.contains('modal-overlay')) {
+                openModal(hash, false);
+            }
+        }
+
+        window.addEventListener('hashchange', syncModalWithHash);
+        syncModalWithHash();
+        
+        // PWA Installation
+        let deferredPrompt;
+        
+        // Show install button when PWA can be installed
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install button
+            installButton.style.display = 'block';
+            installButton.classList.add('visible');
+            
+            console.log('PWA pode ser instalado!');
+        });
+        
+        // Install button click handler
+        installButton.addEventListener('click', (e) => {
+            // Hide the install button
+            installButton.style.display = 'none';
+            installButton.classList.remove('visible');
+            
+            // Show the install prompt
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Usuário aceitou instalar o PWA');
+                    } else {
+                        console.log('Usuário recusou instalar o PWA');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
+        
+        // Check if app is already installed
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA instalado com sucesso!');
+            installButton.style.display = 'none';
+        });
+        
+        // Check if running as standalone (already installed)
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            console.log('Executando como app PWA instalado');
+            installButton.style.display = 'none';
+        }
+        
+        // Service Worker Registration
+        // Only register if using HTTP/HTTPS (not file://)
+        if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado com sucesso:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Falha ao registrar Service Worker:', error);
+                    });
+            });
+        } else if (window.location.protocol === 'file:') {
+            console.info('Service Worker desabilitado: Use servidor local (http://localhost:8000) para ativar PWA offline');
+        }
+        
+        // ========== AUDIO/TEXT-TO-SPEECH FUNCTIONALITY ==========
+        // Speech synthesis for English phrases
+        const speech = window.speechSynthesis;
+        let currentUtterance = null;
+        
+        // Create and add audio buttons to all English phrases
+        function initializeAudioButtons() {
+            const englishPhrases = document.querySelectorAll('.en');
+            
+            englishPhrases.forEach((enElement, index) => {
+                // Check if button already exists (prevents duplicates)
+                if (enElement.querySelector('.audio-btn')) {
+                    return;
+                }
+                
+                // Get the English text
+                const englishText = enElement.textContent.trim();
+                
+                // Create audio button
+                const audioBtn = document.createElement('button');
+                audioBtn.type = 'button';
+                audioBtn.className = 'audio-btn';
+                audioBtn.innerHTML = '🔊';
+                audioBtn.title = 'Ouvir pronúncia';
+                audioBtn.setAttribute('aria-label', `Ouvir: ${englishText}`);
+                
+                // Add click handler for audio playback
+                audioBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const wasPlaying = audioBtn.classList.contains('playing');
+                    
+                    // Cancel any current speech
+                    if (speech.speaking) {
+                        speech.cancel();
+                        currentUtterance = null;
+                        
+                        // Remove playing class from all buttons
+                        document.querySelectorAll('.audio-btn.playing').forEach(btn => {
+                            btn.classList.remove('playing');
+                        });
+                        
+                        // If clicking the same button, stop
+                        if (wasPlaying) {
+                            return;
+                        }
+                    }
+                    
+                    // Prepare speech
+                    const utterance = new SpeechSynthesisUtterance(englishText);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.9; // Slightly slower for clarity
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+                    
+                    // Add visual feedback while speaking
+                    utterance.onstart = () => {
+                        audioBtn.classList.add('playing');
+                    };
+                    
+                    utterance.onend = () => {
+                        audioBtn.classList.remove('playing');
+                        currentUtterance = null;
+                    };
+                    
+                    utterance.onerror = (event) => {
+                        console.error('Speech synthesis error:', event.error);
+                        audioBtn.classList.remove('playing');
+                    };
+                    
+                    currentUtterance = utterance;
+                    speech.speak(utterance);
+                });
+                
+                // Insert button before the English text
+                enElement.insertBefore(audioBtn, enElement.firstChild);
+            });
+        }
+        
+        // Initialize audio buttons when page loads
+        initializeAudioButtons();
+        
+        // Reinitialize audio buttons when modals open (for dynamically added content)
+        modals.forEach(modal => {
+            const originalModal = modal;
+            const observer = new MutationObserver((mutations) => {
+                initializeAudioButtons();
+            });
+            
+            // Observe the modal body for changes
+            const modalBody = modal.querySelector('.modal-body');
+            if (modalBody) {
+                observer.observe(modalBody, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        });
+        
+        // Clean up speech when closing modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (speech.speaking) {
+                    speech.cancel();
+                    document.querySelectorAll('.audio-btn.playing').forEach(btn => {
+                        btn.classList.remove('playing');
+                    });
+                }
+            });
+        });
+        
+        // Also stop speech when clicking on modal overlay background
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(event) {
+                if (event.target === this && speech.speaking) {
+                    speech.cancel();
+                    document.querySelectorAll('.audio-btn.playing').forEach(btn => {
+                        btn.classList.remove('playing');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
