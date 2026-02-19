@@ -1600,6 +1600,7 @@
         let lastTouchTime = 0;
         const touchStartData = new WeakMap();
         const TAP_MOVE_THRESHOLD = 12;
+        const TOUCH_SCROLL_THRESHOLD = 4;
         
         // Improved touch/click handler for cards
         cards.forEach(card => {
@@ -1607,7 +1608,7 @@
             card.addEventListener('click', handleCardClick);
             card.addEventListener('touchstart', handleCardTouchStart, { passive: true });
             card.addEventListener('touchmove', handleCardTouchMove, { passive: true });
-            card.addEventListener('touchend', handleCardTouchEnd, { passive: true });
+            card.addEventListener('touchend', handleCardTouchEnd, { passive: false });
             card.addEventListener('touchcancel', handleCardTouchCancel, { passive: true });
         });
         
@@ -1637,7 +1638,8 @@
             touchStartData.set(this, {
                 x: touch.clientX,
                 y: touch.clientY,
-                moved: false
+                moved: false,
+                scrollY: window.scrollY
             });
 
             this.classList.add('touched');
@@ -1665,7 +1667,12 @@
             const touchInfo = touchStartData.get(this);
             touchStartData.delete(this);
 
-            if (!touchInfo || touchInfo.moved) {
+            const scrolledDuringTouch = touchInfo
+                ? Math.abs(window.scrollY - touchInfo.scrollY) > TOUCH_SCROLL_THRESHOLD
+                : false;
+
+            if (!touchInfo || touchInfo.moved || scrolledDuringTouch) {
+                lastTouchTime = Date.now();
                 this.classList.remove('touched');
                 return;
             }
@@ -1684,6 +1691,7 @@
 
         function handleCardTouchCancel() {
             touchStartData.delete(this);
+            lastTouchTime = Date.now();
             this.classList.remove('touched');
         }
         
